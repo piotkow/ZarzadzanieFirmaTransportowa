@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mydbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="administrator">
+          <Key>
+            <PropertyRef Name="idAdministrator" />
+          </Key>
+          <Property Name="idAdministrator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kierowcy">
+          <Key>
+            <PropertyRef Name="idKierowcy" />
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKierowcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwisko_prac" Type="varchar" MaxLength="45" />
+          <Property Name="imie_prac" Type="varchar" MaxLength="45" />
+          <Property Name="numer_tel_kierowcy" Type="varchar" MaxLength="9" />
+          <Property Name="czy_aktywne" Type="tinyint" />
+          <Property Name="idKonta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="idKlienci" />
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKlienci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwisko_klienta" Type="varchar" MaxLength="45" />
+          <Property Name="imie_klienta" Type="varchar" MaxLength="45" />
+          <Property Name="numer_tel_klienta" Type="varchar" MaxLength="9" />
+          <Property Name="weryfikacja" Type="tinyint" />
+          <Property Name="czy_aktywne" Type="tinyint" Nullable="false" />
+          <Property Name="idKonta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="konta">
+          <Key>
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKonta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email_klienta" Type="varchar" MaxLength="45" />
+          <Property Name="login" Type="varchar" MaxLength="45" />
+          <Property Name="haslo" Type="varchar" MaxLength="45" />
+          <Property Name="rola" Type="enum" />
+        </EntityType>
+        <EntityType Name="model_samochodu">
+          <Key>
+            <PropertyRef Name="idModel" />
+          </Key>
+          <Property Name="idModel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa_model" Type="varchar" MaxLength="45" />
+          <Property Name="cena_za_km" Type="double" />
+          <Property Name="zdj_model" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="pensja">
+          <Key>
+            <PropertyRef Name="idPensja" />
+            <PropertyRef Name="idKierowcy" />
+          </Key>
+          <Property Name="idPensja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stawka_godz" Type="double" />
+          <Property Name="miesiac" Type="date" />
+          <Property Name="idKierowcy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pojazdy">
+          <Key>
+            <PropertyRef Name="idPojazdy" />
+            <PropertyRef Name="idModel" />
+          </Key>
+          <Property Name="idPojazdy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nr_rejestracji" Type="varchar" MaxLength="7" />
+          <Property Name="dostepnosc" Type="tinyint" />
+          <Property Name="status_pojazdu" Type="enum" />
+          <Property Name="idModel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="szczegoly_zamowienia">
+          <Key>
+            <PropertyRef Name="idSzczegoly_zamowienia" />
+          </Key>
+          <Property Name="idSzczegoly_zamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="poczatek_panstwo" Type="varchar" MaxLength="45" />
+          <Property Name="poczatek_miasto" Type="varchar" MaxLength="45" />
+          <Property Name="poczatek_ulica" Type="varchar" MaxLength="45" />
+          <Property Name="poczatek_nr_domu" Type="varchar" MaxLength="45" />
+          <Property Name="poczatek_kod_pocztowy" Type="varchar" MaxLength="6" />
+          <Property Name="koniec_panstwo" Type="varchar" MaxLength="45" />
+          <Property Name="koniec_miasto" Type="varchar" MaxLength="45" />
+          <Property Name="koniec_ulica" Type="varchar" MaxLength="45" />
+          <Property Name="koniec_nr_domu" Type="varchar" MaxLength="45" />
+          <Property Name="koniec_kod_pocztowy" Type="varchar" MaxLength="6" />
+          <Property Name="ilosc_km" Type="double" />
+          <Property Name="cena" Type="double" />
+        </EntityType>
+        <EntityType Name="zamowienia">
+          <Key>
+            <PropertyRef Name="idZamowienia" />
+            <PropertyRef Name="idKierowcy" />
+            <PropertyRef Name="idModel" />
+            <PropertyRef Name="idKlienci" />
+            <PropertyRef Name="idKonta" />
+            <PropertyRef Name="idSzczegoly_zamowienia" />
+            <PropertyRef Name="idAdministrator" />
+            <PropertyRef Name="idPojazdy" />
+          </Key>
+          <Property Name="idZamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_zlozenia_zamowienia" Type="datetime" Precision="0" />
+          <Property Name="zamowiona_data_realizacji" Type="datetime" Precision="0" />
+          <Property Name="data_poczatku" Type="datetime" Precision="0" />
+          <Property Name="data_konca" Type="datetime" Precision="0" />
+          <Property Name="status_zamowienia" Type="enum" />
+          <Property Name="idKierowcy" Type="int" Nullable="false" />
+          <Property Name="idModel" Type="int" Nullable="false" />
+          <Property Name="idKlienci" Type="int" Nullable="false" />
+          <Property Name="idKonta" Type="int" Nullable="false" />
+          <Property Name="idSzczegoly_zamowienia" Type="int" Nullable="false" />
+          <Property Name="idAdministrator" Type="int" Nullable="false" />
+          <Property Name="idPojazdy" Type="int" Nullable="false" />
+          <Property Name="komentarz" Type="varchar" MaxLength="200" />
+          <Property Name="przewidywany_czas" Type="int" />
+        </EntityType>
+        <Association Name="fk_kierowcy_konta1">
+          <End Role="konta" Type="Self.konta" Multiplicity="1" />
+          <End Role="kierowcy" Type="Self.kierowcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konta">
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="kierowcy">
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_klienci_konta1">
+          <End Role="konta" Type="Self.konta" Multiplicity="1" />
+          <End Role="klienci" Type="Self.klienci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konta">
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="klienci">
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_pensja_kierowcy1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_pensja_kierowcy1" />-->
+        <Association Name="fk_pojazdy_model1">
+          <End Role="model_samochodu" Type="Self.model_samochodu" Multiplicity="1" />
+          <End Role="pojazdy" Type="Self.pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model_samochodu">
+              <PropertyRef Name="idModel" />
+            </Principal>
+            <Dependent Role="pojazdy">
+              <PropertyRef Name="idModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_zamowienia_administrator1">
+          <End Role="administrator" Type="Self.administrator" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrator">
+              <PropertyRef Name="idAdministrator" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idAdministrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_zamowienia_kierowcy1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_zamowienia_kierowcy1" />-->
+        <Association Name="fk_zamowienia_klienci1">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="idKlienci" />
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idKlienci" />
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_zamowienia_model_samochodu1">
+          <End Role="model_samochodu" Type="Self.model_samochodu" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model_samochodu">
+              <PropertyRef Name="idModel" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_zamowienia_pojazdy1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_zamowienia_pojazdy1" />-->
+        <Association Name="fk_zamowienia_szczegoly_zamowienia1">
+          <End Role="szczegoly_zamowienia" Type="Self.szczegoly_zamowienia" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="szczegoly_zamowienia">
+              <PropertyRef Name="idSzczegoly_zamowienia" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idSzczegoly_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mydbModelStoreContainer">
+          <EntitySet Name="administrator" EntityType="Self.administrator" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="kierowcy" EntityType="Self.kierowcy" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="konta" EntityType="Self.konta" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="model_samochodu" EntityType="Self.model_samochodu" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="pensja" EntityType="Self.pensja" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="pojazdy" EntityType="Self.pojazdy" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="szczegoly_zamowienia" EntityType="Self.szczegoly_zamowienia" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="zamowienia" EntityType="Self.zamowienia" Schema="mydb" store:Type="Tables" />
+          <AssociationSet Name="fk_kierowcy_konta1" Association="Self.fk_kierowcy_konta1">
+            <End Role="konta" EntitySet="konta" />
+            <End Role="kierowcy" EntitySet="kierowcy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_klienci_konta1" Association="Self.fk_klienci_konta1">
+            <End Role="konta" EntitySet="konta" />
+            <End Role="klienci" EntitySet="klienci" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pojazdy_model1" Association="Self.fk_pojazdy_model1">
+            <End Role="model_samochodu" EntitySet="model_samochodu" />
+            <End Role="pojazdy" EntitySet="pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_administrator1" Association="Self.fk_zamowienia_administrator1">
+            <End Role="administrator" EntitySet="administrator" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_klienci1" Association="Self.fk_zamowienia_klienci1">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_model_samochodu1" Association="Self.fk_zamowienia_model_samochodu1">
+            <End Role="model_samochodu" EntitySet="model_samochodu" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_szczegoly_zamowienia1" Association="Self.fk_zamowienia_szczegoly_zamowienia1">
+            <End Role="szczegoly_zamowienia" EntitySet="szczegoly_zamowienia" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="administrator">
+          <Key>
+            <PropertyRef Name="idAdministrator" />
+          </Key>
+          <Property Name="idAdministrator" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="zamowienia" Relationship="Self.fk_zamowienia_administrator1" FromRole="administrator" ToRole="zamowienia" />
+        </EntityType>
+        <EntityType Name="kierowcy">
+          <Key>
+            <PropertyRef Name="idKierowcy" />
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKierowcy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwisko_prac" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="imie_prac" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="idKonta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="konta" Relationship="Self.fk_kierowcy_konta1" FromRole="kierowcy" ToRole="konta" />
+          <Property Name="numer_tel_kierowcy" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="czy_aktywne" Type="SByte" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="idKlienci" />
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKlienci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwisko_klienta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="imie_klienta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="numer_tel_klienta" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="weryfikacja" Type="SByte" />
+          <Property Name="idKonta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="konta" Relationship="Self.fk_klienci_konta1" FromRole="klienci" ToRole="konta" />
+          <NavigationProperty Name="zamowienia" Relationship="Self.fk_zamowienia_klienci1" FromRole="klienci" ToRole="zamowienia" />
+          <Property Name="czy_aktywne" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="konta">
+          <Key>
+            <PropertyRef Name="idKonta" />
+          </Key>
+          <Property Name="idKonta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email_klienta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="haslo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="rola" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kierowcy" Relationship="Self.fk_kierowcy_konta1" FromRole="konta" ToRole="kierowcy" />
+          <NavigationProperty Name="klienci" Relationship="Self.fk_klienci_konta1" FromRole="konta" ToRole="klienci" />
+        </EntityType>
+        <EntityType Name="pensja">
+          <Key>
+            <PropertyRef Name="idPensja" />
+            <PropertyRef Name="idKierowcy" />
+          </Key>
+          <Property Name="idPensja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stawka_godz" Type="Double" />
+          <Property Name="miesiac" Type="DateTime" />
+          <Property Name="idKierowcy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pojazdy">
+          <Key>
+            <PropertyRef Name="idPojazdy" />
+            <PropertyRef Name="idModel" />
+          </Key>
+          <Property Name="idPojazdy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nr_rejestracji" Type="String" />
+          <Property Name="dostepnosc" Type="SByte" />
+          <Property Name="status_pojazdu" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <Property Name="idModel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="model_samochodu" Relationship="mydbModel.fk_pojazdy_model11" FromRole="pojazdy" ToRole="model_samochodu" />
+        </EntityType>
+        <EntityType Name="szczegoly_zamowienia">
+          <Key>
+            <PropertyRef Name="idSzczegoly_zamowienia" />
+          </Key>
+          <Property Name="idSzczegoly_zamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="poczatek_panstwo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="poczatek_miasto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="poczatek_ulica" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="poczatek_nr_domu" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="poczatek_kod_pocztowy" Type="String" Nullable="false" />
+          <Property Name="koniec_panstwo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="koniec_miasto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="koniec_ulica" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="koniec_nr_domu" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ilosc_km" Type="Double" />
+          <Property Name="cena" Type="Double" />
+          <NavigationProperty Name="zamowienia" Relationship="Self.fk_zamowienia_szczegoly_zamowienia1" FromRole="szczegoly_zamowienia" ToRole="zamowienia" />
+          <Property Name="koniec_kod_pocztowy" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zamowienia">
+          <Key>
+            <PropertyRef Name="idZamowienia" />
+            <PropertyRef Name="idKierowcy" />
+            <PropertyRef Name="idPojazdy" />
+            <PropertyRef Name="idKlienci" />
+            <PropertyRef Name="idKonta" />
+            <PropertyRef Name="idSzczegoly_zamowienia" />
+            <PropertyRef Name="idAdministrator" />
+            <PropertyRef Name="idModel" />
+          </Key>
+          <Property Name="idZamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_poczatku" Type="DateTime" />
+          <Property Name="data_konca" Type="DateTime" />
+          <Property Name="status_zamowienia" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <Property Name="idKierowcy" Type="Int32" Nullable="false" />
+          <Property Name="idPojazdy" Type="Int32" Nullable="false" />
+          <Property Name="idKlienci" Type="Int32" Nullable="false" />
+          <Property Name="idKonta" Type="Int32" Nullable="false" />
+          <Property Name="idSzczegoly_zamowienia" Type="Int32" Nullable="false" />
+          <Property Name="idAdministrator" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="administrator" Relationship="Self.fk_zamowienia_administrator1" FromRole="zamowienia" ToRole="administrator" />
+          <NavigationProperty Name="klienci" Relationship="Self.fk_zamowienia_klienci1" FromRole="zamowienia" ToRole="klienci" />
+          <NavigationProperty Name="szczegoly_zamowienia" Relationship="Self.fk_zamowienia_szczegoly_zamowienia1" FromRole="zamowienia" ToRole="szczegoly_zamowienia" />
+          <Property Name="data_zlozenia_zamowienia" Type="DateTime" />
+          <Property Name="zamowiona_data_realizacji" Type="DateTime" />
+          <Property Name="idModel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="model_samochodu" Relationship="mydbModel.fk_zamowienia_model_samochodu1" FromRole="zamowienia" ToRole="model_samochodu" />
+          <Property Name="komentarz" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="przewidywany_czas" Type="Int32" />
+        </EntityType>
+        <Association Name="fk_zamowienia_administrator1">
+          <End Role="administrator" Type="Self.administrator" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="administrator">
+              <PropertyRef Name="idAdministrator" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idAdministrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_kierowcy_konta1">
+          <End Role="konta" Type="Self.konta" Multiplicity="1" />
+          <End Role="kierowcy" Type="Self.kierowcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konta">
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="kierowcy">
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_klienci_konta1">
+          <End Role="konta" Type="Self.konta" Multiplicity="1" />
+          <End Role="klienci" Type="Self.klienci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konta">
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="klienci">
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_zamowienia_klienci1">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="idKlienci" />
+              <PropertyRef Name="idKonta" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idKlienci" />
+              <PropertyRef Name="idKonta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_zamowienia_szczegoly_zamowienia1">
+          <End Role="szczegoly_zamowienia" Type="Self.szczegoly_zamowienia" Multiplicity="1" />
+          <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="szczegoly_zamowienia">
+              <PropertyRef Name="idSzczegoly_zamowienia" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idSzczegoly_zamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="administrator" EntityType="Self.administrator" />
+          <EntitySet Name="kierowcy" EntityType="Self.kierowcy" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" />
+          <EntitySet Name="konta" EntityType="Self.konta" />
+          <EntitySet Name="pensja" EntityType="Self.pensja" />
+          <EntitySet Name="pojazdy" EntityType="Self.pojazdy" />
+          <EntitySet Name="szczegoly_zamowienia" EntityType="Self.szczegoly_zamowienia" />
+          <EntitySet Name="zamowienia" EntityType="Self.zamowienia" />
+          <AssociationSet Name="fk_zamowienia_administrator1" Association="Self.fk_zamowienia_administrator1">
+            <End Role="administrator" EntitySet="administrator" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kierowcy_konta1" Association="Self.fk_kierowcy_konta1">
+            <End Role="konta" EntitySet="konta" />
+            <End Role="kierowcy" EntitySet="kierowcy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_klienci_konta1" Association="Self.fk_klienci_konta1">
+            <End Role="konta" EntitySet="konta" />
+            <End Role="klienci" EntitySet="klienci" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_klienci1" Association="Self.fk_zamowienia_klienci1">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_szczegoly_zamowienia1" Association="Self.fk_zamowienia_szczegoly_zamowienia1">
+            <End Role="szczegoly_zamowienia" EntitySet="szczegoly_zamowienia" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+          <EntitySet Name="model_samochodu" EntityType="mydbModel.model_samochodu" />
+          <AssociationSet Name="fk_pojazdy_model11" Association="mydbModel.fk_pojazdy_model11">
+            <End Role="model_samochodu" EntitySet="model_samochodu" />
+            <End Role="pojazdy" EntitySet="pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_zamowienia_model_samochodu1" Association="mydbModel.fk_zamowienia_model_samochodu1">
+            <End Role="model_samochodu" EntitySet="model_samochodu" />
+            <End Role="zamowienia" EntitySet="zamowienia" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="model_samochodu">
+          <Key>
+            <PropertyRef Name="idModel" />
+          </Key>
+          <Property Name="idModel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa_model" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="cena_za_km" Type="Double" />
+          <Property Name="zdj_model" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pojazdy" Relationship="mydbModel.fk_pojazdy_model11" FromRole="model_samochodu" ToRole="pojazdy" />
+          <NavigationProperty Name="zamowienia" Relationship="mydbModel.fk_zamowienia_model_samochodu1" FromRole="model_samochodu" ToRole="zamowienia" />
+        </EntityType>
+        <Association Name="fk_pojazdy_model11">
+          <End Type="mydbModel.model_samochodu" Role="model_samochodu" Multiplicity="1" />
+          <End Type="mydbModel.pojazdy" Role="pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model_samochodu">
+              <PropertyRef Name="idModel" />
+            </Principal>
+            <Dependent Role="pojazdy">
+              <PropertyRef Name="idModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_zamowienia_model_samochodu1">
+          <End Type="mydbModel.model_samochodu" Role="model_samochodu" Multiplicity="1" />
+          <End Type="mydbModel.zamowienia" Role="zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model_samochodu">
+              <PropertyRef Name="idModel" />
+            </Principal>
+            <Dependent Role="zamowienia">
+              <PropertyRef Name="idModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+          <EntitySetMapping Name="administrator">
+            <EntityTypeMapping TypeName="mydbModel.administrator">
+              <MappingFragment StoreEntitySet="administrator">
+                <ScalarProperty Name="idAdministrator" ColumnName="idAdministrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kierowcy">
+            <EntityTypeMapping TypeName="mydbModel.kierowcy">
+              <MappingFragment StoreEntitySet="kierowcy">
+                <ScalarProperty Name="czy_aktywne" ColumnName="czy_aktywne" />
+                <ScalarProperty Name="numer_tel_kierowcy" ColumnName="numer_tel_kierowcy" />
+                <ScalarProperty Name="idKierowcy" ColumnName="idKierowcy" />
+                <ScalarProperty Name="nazwisko_prac" ColumnName="nazwisko_prac" />
+                <ScalarProperty Name="imie_prac" ColumnName="imie_prac" />
+                <ScalarProperty Name="idKonta" ColumnName="idKonta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="klienci">
+            <EntityTypeMapping TypeName="mydbModel.klienci">
+              <MappingFragment StoreEntitySet="klienci">
+                <ScalarProperty Name="czy_aktywne" ColumnName="czy_aktywne" />
+                <ScalarProperty Name="idKlienci" ColumnName="idKlienci" />
+                <ScalarProperty Name="nazwisko_klienta" ColumnName="nazwisko_klienta" />
+                <ScalarProperty Name="imie_klienta" ColumnName="imie_klienta" />
+                <ScalarProperty Name="numer_tel_klienta" ColumnName="numer_tel_klienta" />
+                <ScalarProperty Name="weryfikacja" ColumnName="weryfikacja" />
+                <ScalarProperty Name="idKonta" ColumnName="idKonta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="konta">
+            <EntityTypeMapping TypeName="mydbModel.konta">
+              <MappingFragment StoreEntitySet="konta">
+                <ScalarProperty Name="idKonta" ColumnName="idKonta" />
+                <ScalarProperty Name="email_klienta" ColumnName="email_klienta" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+                <ScalarProperty Name="rola" ColumnName="rola" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pensja">
+            <EntityTypeMapping TypeName="mydbModel.pensja">
+              <MappingFragment StoreEntitySet="pensja">
+                <ScalarProperty Name="idPensja" ColumnName="idPensja" />
+                <ScalarProperty Name="stawka_godz" ColumnName="stawka_godz" />
+                <ScalarProperty Name="miesiac" ColumnName="miesiac" />
+                <ScalarProperty Name="idKierowcy" ColumnName="idKierowcy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pojazdy">
+            <EntityTypeMapping TypeName="mydbModel.pojazdy">
+              <MappingFragment StoreEntitySet="pojazdy">
+                <ScalarProperty Name="idModel" ColumnName="idModel" />
+                <ScalarProperty Name="idPojazdy" ColumnName="idPojazdy" />
+                <ScalarProperty Name="nr_rejestracji" ColumnName="nr_rejestracji" />
+                <ScalarProperty Name="dostepnosc" ColumnName="dostepnosc" />
+                <ScalarProperty Name="status_pojazdu" ColumnName="status_pojazdu" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="szczegoly_zamowienia">
+            <EntityTypeMapping TypeName="mydbModel.szczegoly_zamowienia">
+              <MappingFragment StoreEntitySet="szczegoly_zamowienia">
+                <ScalarProperty Name="koniec_kod_pocztowy" ColumnName="koniec_kod_pocztowy" />
+                <ScalarProperty Name="poczatek_kod_pocztowy" ColumnName="poczatek_kod_pocztowy" />
+                <ScalarProperty Name="idSzczegoly_zamowienia" ColumnName="idSzczegoly_zamowienia" />
+                <ScalarProperty Name="poczatek_panstwo" ColumnName="poczatek_panstwo" />
+                <ScalarProperty Name="poczatek_miasto" ColumnName="poczatek_miasto" />
+                <ScalarProperty Name="poczatek_ulica" ColumnName="poczatek_ulica" />
+                <ScalarProperty Name="poczatek_nr_domu" ColumnName="poczatek_nr_domu" />
+                <ScalarProperty Name="koniec_panstwo" ColumnName="koniec_panstwo" />
+                <ScalarProperty Name="koniec_miasto" ColumnName="koniec_miasto" />
+                <ScalarProperty Name="koniec_ulica" ColumnName="koniec_ulica" />
+                <ScalarProperty Name="koniec_nr_domu" ColumnName="koniec_nr_domu" />
+                <ScalarProperty Name="ilosc_km" ColumnName="ilosc_km" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zamowienia">
+            <EntityTypeMapping TypeName="mydbModel.zamowienia">
+              <MappingFragment StoreEntitySet="zamowienia">
+                <ScalarProperty Name="przewidywany_czas" ColumnName="przewidywany_czas" />
+                <ScalarProperty Name="komentarz" ColumnName="komentarz" />
+                <ScalarProperty Name="idModel" ColumnName="idModel" />
+                <ScalarProperty Name="zamowiona_data_realizacji" ColumnName="zamowiona_data_realizacji" />
+                <ScalarProperty Name="data_zlozenia_zamowienia" ColumnName="data_zlozenia_zamowienia" />
+                <ScalarProperty Name="idZamowienia" ColumnName="idZamowienia" />
+                <ScalarProperty Name="data_poczatku" ColumnName="data_poczatku" />
+                <ScalarProperty Name="data_konca" ColumnName="data_konca" />
+                <ScalarProperty Name="status_zamowienia" ColumnName="status_zamowienia" />
+                <ScalarProperty Name="idKierowcy" ColumnName="idKierowcy" />
+                <ScalarProperty Name="idPojazdy" ColumnName="idPojazdy" />
+                <ScalarProperty Name="idKlienci" ColumnName="idKlienci" />
+                <ScalarProperty Name="idKonta" ColumnName="idKonta" />
+                <ScalarProperty Name="idSzczegoly_zamowienia" ColumnName="idSzczegoly_zamowienia" />
+                <ScalarProperty Name="idAdministrator" ColumnName="idAdministrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="model_samochodu">
+            <EntityTypeMapping TypeName="mydbModel.model_samochodu">
+              <MappingFragment StoreEntitySet="model_samochodu">
+                <ScalarProperty Name="zdj_model" ColumnName="zdj_model" />
+                <ScalarProperty Name="cena_za_km" ColumnName="cena_za_km" />
+                <ScalarProperty Name="nazwa_model" ColumnName="nazwa_model" />
+                <ScalarProperty Name="idModel" ColumnName="idModel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

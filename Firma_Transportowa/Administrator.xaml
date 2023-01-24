@@ -1,0 +1,369 @@
+﻿<Page x:Class="Firma_Transportowa.Administrator"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Firma_Transportowa"
+      mc:Ignorable="d" 
+      d:DesignHeight="450"
+      Title="Administrator" Height="700" Width="1300">
+
+
+    <Grid Margin="0,25,0,0">
+        <Grid>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Button x:Name="btnWeryfikacja" Content="Weryfikacja Klienta" HorizontalAlignment="Center" VerticalAlignment="Center" Width="130" Click="btnWeryfikacja_Click" Height="46" Background="#FFF1A60D" BorderBrush="Black" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnEdycja" Content="Edycja Klientów i Pracowników" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Click="btnEdycja_Click" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnZamowienia" Content="Weryfikacja zamówień" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Click="btnZamowienia_Click" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnEdycjaZamowienia" Content="Edycja Zamowienia" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="130" Click="btnEdycjaZamowienia_Click" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnPojazdy" Content="Pojazdy" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="70" Click="btnPojazdy_Click" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnStawkaGodzinowa" Content="Edytuj Stawkę Godzinową" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Click="btnStawkaGodzinowa_Click" Width="150" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+                <Button x:Name="btnRaport" Content="Rapoty" Click="btnRaport_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="70" Height="46" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Background="{x:Null}" BorderThickness="1,1,1,0"/>
+            </StackPanel>
+
+            <Grid x:Name="gridEdycji" HorizontalAlignment="Left" Height="406" Margin="635,124,0,0" VerticalAlignment="Top" Width="469" d:IsHidden="True">
+                <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                    <Grid>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblImie" Content="Imie:" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" RenderTransformOrigin="1.026,0.913" FontSize="14"/>
+                                <TextBox x:Name="txtImie" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" FontSize="14" Height="29" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleImie" Content="" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Center" Height="23" Width="156" Foreground="#FFFF0707"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblNazwisko" Content="Nazwisko:" HorizontalAlignment="Left" Margin="88,20,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" FontSize="14"/>
+                                <TextBox x:Name="txtNazwisko" HorizontalAlignment="Left" Height="29" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" FontSize="14" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleNazwisko" Content="" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Center" RenderTransformOrigin="-0.041,-0.115" Width="156" Foreground="Red" Height="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblMail" Content="E-mail:" HorizontalAlignment="Left" Margin="108,20,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" RenderTransformOrigin="0.603,0.577" FontSize="14"/>
+                                <TextBox x:Name="txtMail" HorizontalAlignment="Left" Height="29" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" FontSize="14" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleMail" Content="" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Center" Foreground="Red" Width="156" Height="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblNrTel" Content="Numer Telefonu:" HorizontalAlignment="Left" Margin="48,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,-0.423" Foreground="#FFF1A60D" FontSize="14"/>
+                                <TextBox x:Name="txtNrTelefonu" HorizontalAlignment="Left" Height="29" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" FontSize="14" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleNrTel" Content="" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Center" Foreground="Red" Height="23" Width="158"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblLogin" Content="Login:" HorizontalAlignment="Left" Margin="113,20,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" FontSize="14"/>
+                                <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="29" Margin="2,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" FontSize="14" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleLogin" Content="" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Center" Foreground="Red" Width="158" Height="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="lblHaslo" Content="Hasło:" HorizontalAlignment="Left" Margin="112,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.289,-0.577" Foreground="#FFF1A60D" FontSize="14"/>
+                                <TextBox x:Name="txtHaslo" HorizontalAlignment="Left" Height="29" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="WhiteSmoke" Background="#B2202020" FontSize="14" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                <Label x:Name="lblZleHaslo" Content="" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Center" Foreground="Red" Height="23" Width="158"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="cbxRola" HorizontalAlignment="Left" Margin="100,20,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxRola_SelectionChanged" Foreground="#FF1A181E" Background="Black" >
+                                    <ComboBoxItem Content="Klient" HorizontalAlignment="Left" Width="118"/>
+                                    <ComboBoxItem Content="Kierowca" HorizontalAlignment="Left" Width="118"/>
+                                </ComboBox>
+                                <CheckBox x:Name="chkWeryfikacja" Content="Weryfikacja" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" Background="#FFC8F0FF"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="150,20,0,0" VerticalAlignment="Top" Width="60" Click="btnOK_Click" RenderTransformOrigin="0.493,1.45" Background="#FFF1A60D" Foreground="Black" BorderBrush="Black" Height="30" />
+                                <Button x:Name="btnAnuluj" Content="Anuluj" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="60" Click="btnAnuluj_Click" Background="{x:Null}" Foreground="#FFF1A60D" BorderBrush="#FFF1A60D" Height="30"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid x:Name="grdWeryfikacja" HorizontalAlignment="Center" Height="561" Margin="0,46,0,0" VerticalAlignment="Top" Width="1300" d:IsHidden="True">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <ListBox x:Name="lbxWeryfikacja" HorizontalAlignment="Center" Height="165" Margin="202,50,206,0" VerticalAlignment="Top" Width="892" SelectionChanged="lbxWeryfikacja_SelectionChanged" Background="#B2202020" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+                <Grid x:Name="OpisKlientGrid" Margin="286,246,598,49">
+                    <Border BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                        <Label x:Name="lblOpis" Content="" HorizontalAlignment="Left" Height="218" Margin="10,10,0,0" VerticalAlignment="Top" Width="373" Foreground="WhiteSmoke" FontSize="14"/>
+                    </Border>
+                </Grid>
+                <Grid x:Name="WeryfikacjaKlient"  HorizontalAlignment="Right" Margin="0,273,300,170" Width="172">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" Margin="-1,0,0,0">
+                            <Label x:Name="lblWeryfikacja" Content="Czy Zweryfikować?" HorizontalAlignment="Center" Height="28" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" FontSize="14"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnTak" Content="Tak" HorizontalAlignment="Center" Margin="20,10,0,0" VerticalAlignment="Top" Width="60" Grid.Column="1" Height="30" Background="#FFF1A60D" BorderBrush="Black" Click="btnTak_Click"/>
+                                <Button x:Name="btnNie" Content="Nie" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D" Click="btnNie_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid x:Name="grdZamowienie" HorizontalAlignment="Left" Height="630" Margin="0,46,0,0" VerticalAlignment="Top" Width="1300" d:IsHidden="True">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <ListBox x:Name="lbxZamowienia" HorizontalAlignment="Center" Height="143" Margin="0,20,0,0" VerticalAlignment="Top" Width="975" SelectionChanged="lbxZamowienia_SelectionChanged" Background="#B2202020" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+                <Grid x:Name="CzyZwerGrid" HorizontalAlignment="Right" Margin="0,184,162,321" Width="172">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,0,0" Width="172">
+                            <Label x:Name="lblWeryfikacjaZamowienia" Content="Czy Zweryfikować?" HorizontalAlignment="Center" Height="28" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" FontSize="14"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnTakZamowienia" Content="Tak" HorizontalAlignment="Center" Margin="20,10,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="#FFF1A60D" Click="btnTakZamowienia_Click" BorderBrush="Black"/>
+                                <Button x:Name="btnNieZamowienia" Content="Nie" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="60" Height="30" Click="btnNieZamowienia_Click" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid x:Name="OpisGrid" Margin="162,184,421,58" >
+                    <Border BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                        <StackPanel  Orientation="Horizontal"  Margin="0,0,0,0">
+                            <Label x:Name="lblOpisZamowienia" Content="" HorizontalAlignment="Center" Margin="50,5,0,0" VerticalAlignment="Top" Height="365" Width="264" Foreground="WhiteSmoke"/>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="40,0,0,0">
+                                <Label x:Name="lblOpisZamowieniaKlient" Content="" HorizontalAlignment="Left" Height="50" Margin="0,5,0,0" VerticalAlignment="Top" Width="230" Foreground="WhiteSmoke" RenderTransformOrigin="0.5,0.5"/>
+                                <Label x:Name="lblOpisZamowieniaKonto" Content="" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="60" Width="230" Foreground="WhiteSmoke" RenderTransformOrigin="0.5,0.5" />
+                                <Label x:Name="lblOpisZamowieniaKierowca" Content="" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.395,-1.615" Height="60" Width="230" Foreground="WhiteSmoke" Grid.Column="1"/>
+                                <Label x:Name="lblOpisZamowieniaPojazd" Content="" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="63" Width="230" Foreground="WhiteSmoke" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Label x:Name="lblKomentarzNapis" Margin="998,404,202,192" Foreground="#FFF1A60D" Content="Komentarz:" FontSize="18" Visibility="Visible"></Label>
+                <TextBox x:Name="txtKomentarz" HorizontalAlignment="Left" Height="129" Margin="910,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+                <StackPanel Margin="910,335,118,226">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblIle" Content="Przewidywany czas: " HorizontalAlignment="Left" Margin="0,0,0,0" FontSize="16" VerticalAlignment="Top" Foreground="#FFF1A60D"/>
+                        <TextBox x:Name="txtGodziny" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Width="120" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1" MaxLength="3"/>
+                    </StackPanel>
+                    <Label x:Name="lblBladGodzina" Content="Podaj przewidywany czas" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"  Foreground="Red"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="grdKlienci" HorizontalAlignment="Left" Height="430" Margin="192,124,0,0" VerticalAlignment="Top" Width="343" d:IsHidden="True">
+
+                <Grid Margin="-93,-78,-664,492">
+                    <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="10,0,0,0" >
+                        <Grid Margin="0,0,0,0" HorizontalAlignment="Center" Width="215" Height="190">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Kierowcy:" HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" Background="{x:Null}" FontSize="16"/>
+                                    <ListBox x:Name="lbxKierowcy" HorizontalAlignment="Center" Height="135" Margin="0,5,0,0" VerticalAlignment="Top" Width="189" SelectionChanged="lbxKierowcy_SelectionChanged" Background="#B2202020" BorderBrush="{x:Null}" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <Grid Margin="0,20,0,0" HorizontalAlignment="Center" Width="215" Height="190">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Height="190" Width="215">
+                                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Klienci:" HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" Background="{x:Null}" FontSize="16"/>
+                                    <ListBox x:Name="lbxKlienci" HorizontalAlignment="Left" Height="144" Margin="0,0,0,0" VerticalAlignment="Top" Width="189" SelectionChanged="lbxKlienci_SelectionChanged" Background="#B2202020" BorderBrush="{x:Null}" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                    <Button x:Name="btnEdytuj" Content="Edytuj" HorizontalAlignment="Right" Margin="30,0,0,0" VerticalAlignment="Top" Width="75" Click="btnEdytuj_Click" Background="#FFF1A60D" Foreground="Black" BorderBrush="Black" Height="39"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="grdEdycjaZamowienia" HorizontalAlignment="Left" Height="630" Margin="30,46,0,0" VerticalAlignment="Top" Width="1240" d:IsHidden="True">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <ListBox x:Name="lbxZamowieniaEdycja" HorizontalAlignment="Center" Height="176" Margin="209,60,174,0" VerticalAlignment="Top" Width="857" SelectionChanged="lbxZamowieniaEdycja_SelectionChanged" Background="#E51E1E1E" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+                <ListBox x:Name="lbxKierowcaZamowienia" HorizontalAlignment="Left" Height="228" Margin="578,283,0,0" VerticalAlignment="Top" Width="488" SelectionChanged="lbxKierowcaZamowienia_SelectionChanged" Background="#E51E1E1E" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+
+                <Grid x:Name="PrzydzielenieKierowcyGrid"  HorizontalAlignment="Right" Margin="0,321,767,182" Width="203">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" Margin="-1,0,0,0">
+                            <Label x:Name="lblCzyPrzydzielic" Content="Czy przydzielić kierowce?" HorizontalAlignment="Left" Height="38" Margin="15,20,0,0" VerticalAlignment="Top" Foreground="#FFF1A60D" FontSize="14"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnTakPrzypisanie" Content="Tak" HorizontalAlignment="Center" Margin="25,10,0,0" VerticalAlignment="Top" Width="60" Grid.Column="1" Height="30" Background="#FFF1A60D" BorderBrush="Black" Click="btnTakPrzypisanie_Click"/>
+                                <Button x:Name="btnNiePrzypisanie" Content="Nie" HorizontalAlignment="Center" Margin="20,10,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D" Click="btnNiePrzypisanie_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+            </Grid>
+            <Grid x:Name="grdPojazd" HorizontalAlignment="Left" Height="630" Margin="30,46,0,0" VerticalAlignment="Top" Width="1240">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <Grid Margin="0,365,49,41">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Margin="10,0,0,0">
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal" Height="154">
+                                <Image x:Name="imgLeft" Margin="150,50,0,50" Width="150" MouseDown="imgLeft_MouseDown"/>
+                                <Image x:Name="imgCenter" Margin="70,0,0,00" Width="500"/>
+                                <Image x:Name="imgRight" Margin="50,50,0,50" Width="150" MouseDown="imgRight_MouseDown"/>
+                            </StackPanel>
+                            <Label x:Name="lblTyp" HorizontalAlignment="Center" FontSize="18" Height="40" Margin="0,10,0,0" Foreground="WhiteSmoke" VerticalAlignment="Bottom"></Label>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="60,0,0,269" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="btnDodajPojazd" Content="Dodaj" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90" Click="btnDodajPojazd_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                        <Button x:Name="btnEdytujPojazd" Content="Edytuj" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="90" Click="btnEdytujPojazd_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                        <Button x:Name="btnUsinPojazd" Content="Usuń" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="90" Click="btnUsunPojazd_Click" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D" Height="35"/>
+                    </StackPanel>
+                    <ListBox x:Name="lbxListaModeli" HorizontalAlignment="Left" Height="290" Margin="30,48,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="lbxListaModeli_SelectionChanged" Background="#E51E1E1E" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke"/>
+                    <Grid Width="190" Margin="10,48,0,0">
+                    <Grid Height="290" Margin="0,0,0,0" VerticalAlignment="Top" Width="180" Background="#E51E1E1E">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" Background="#B2202020" Margin="0,0,0,0">
+                        <StackPanel>
+                                <ListBox x:Name="lbxListaPojazdow" HorizontalAlignment="Left" Height="255" Margin="0,0,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lbxListaPojazdow_SelectionChanged" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="{x:Null}"/>
+                                <Button  x:Name="btnDodaPojazd0" Content="Dodaj" Margin="1,1,1,1" Visibility="Hidden" Click="btnDodaPojazd0_Click" Width="90"  Background="#FFF1A60D" BorderBrush="Black" Height="25"></Button>
+                    </StackPanel>
+                    </Border>
+                    </Grid>
+                    </Grid>
+                </StackPanel>
+
+                <!--////////////////////////////////////////////////////////////////////////////////////-->
+                <Grid x:Name="grdSzczegolyPojazdu" HorizontalAlignment="Left" Height="288" Margin="560,48,0,0" VerticalAlignment="Top" Width="620" Visibility="Visible">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,87">
+                        <Grid Width="200" Height="200" Margin="10,0,0,0">
+                            <Image x:Name="imgPojazd" Height="130" Width="130" Margin="0,0,0,0"/>
+                        </Grid>
+                        <StackPanel Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="376" >
+                            <Label x:Name="lblNazwaModelu" HorizontalAlignment="Left"  FontSize="16" Margin="0,10,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD3AF38"/>
+                            <Label x:Name="lblCena" HorizontalAlignment="Left" FontSize="16" Margin="0,10,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD3AF38"/>
+                            <Label x:Name="lblNrRejestracji" HorizontalAlignment="Left" FontSize="16" Margin="0,10,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD3AF38"/>
+                            <Label x:Name="lblStatusPojazdu" HorizontalAlignment="Left" FontSize="16" Margin="0,10,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD3AF38"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <!--////////////////////////////////////////////////////////////////////////////////////-->
+                <Grid x:Name="grdEdycjaPojazdu" HorizontalAlignment="Left" Height="288" Margin="560,48,0,0" VerticalAlignment="Top" Width="620" Visibility="Visible">
+                    <StackPanel Margin="0,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Margin="10,0,0,0">
+                                <Grid Width="200" Height="200">
+                                    <Image x:Name="imgPojazdEdycja" HorizontalAlignment="Center" Height="130" VerticalAlignment="Center" Width="130" Margin="0,0,0,0">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" UriSource="zdjecia/picture_208px.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                            <StackPanel Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="376" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label Content="Nazwa Modelu:" Margin="0,0,0,0" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                                    <TextBox x:Name="txtNazwaModelu" Margin="5,0,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladNazwaModeluE" Foreground="Red" HorizontalAlignment="Center"></Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label Content="Cena:" Margin="0,5,0,0" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                                    <TextBox x:Name="txtCena" Margin="5,5,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladCenaE" Foreground="Red" HorizontalAlignment="Center"></Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label x:Name="lblNapisRejestracjaE" Margin="0,5,0,0" Content="Rejestracja:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center" Visibility="Hidden"></Label>
+                                    <TextBox x:Name="txtNrRejestracji" Margin="5,5,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1" Visibility="Hidden" MaxLength="7"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladRejestracjaPojazduE" Foreground="Red" HorizontalAlignment="Center"></Label>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <Button x:Name="btnDodajZdjecie" Content="Wybierz" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZdjecie_Click" Visibility="Hidden" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                            <Button x:Name="btnZapisz" Content="Zapisz" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden" Click="btnZapisz_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                            <Button x:Name="btnAnulujEdycja" Content="Anuluj" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D" Height="35"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <!--////////////////////////////////////////////////////////////////////////////////////-->
+                <Grid x:Name="grdDodaniePojazdu" HorizontalAlignment="Left" Height="308" Margin="592,48,0,0" VerticalAlignment="Top" Width="620" Visibility="Hidden">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Content="Rejestracja:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                            <TextBox x:Name="txtNrRejestracjiDodanieP" Margin="5,0,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1" HorizontalAlignment="Center" MaxLength="7"/>
+                        </StackPanel>
+                        <Label x:Name="lblBladRejestracjaP" Foreground="Red"></Label>
+                        <Button x:Name="btnZapiszP" Content="Zapisz" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Center" Width="75" Click="btnZapiszP_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--////////////////////////////////////////////////////////////////////////////////////-->
+                <Grid x:Name="grdDodanieModelu" HorizontalAlignment="Left" Height="288" Margin="560,48,0,0" VerticalAlignment="Top" Width="620" Visibility="Hidden">
+                    <StackPanel Margin="0,0,0,24">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020" Margin="10,0,0,0">
+                                <Grid Width="200" Height="200">
+                                    <Image x:Name="imgPojazdDodanie" HorizontalAlignment="Center" Height="130" VerticalAlignment="Center" Width="130" Margin="0,0,0,0">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" UriSource="zdjecia/picture_208px.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                            <StackPanel Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="376" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label Content="Nazwa Modelu:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                                    <TextBox x:Name="txtNazwaModeluDodanie" Margin="5,0,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladNazwaModeluM" Foreground="Red" HorizontalAlignment="Center"></Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,0,0">
+                                    <Label Content="Cena:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                                    <TextBox x:Name="txtCenaDodanie" Margin="5,10,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladCenaM" Foreground="Red" HorizontalAlignment="Center"></Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label Content="Rejestracja:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"></Label>
+                                    <TextBox x:Name="txtNrRejestracjiDodanieM" Margin="5,10,0,0" FontSize="16" Width="255" VerticalAlignment="Center" Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1" MaxLength="7"/>
+                                </StackPanel>
+                                <Label x:Name="lblBladRejestracjaPojazduM" Foreground="Red" HorizontalAlignment="Center"></Label>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <Button x:Name="btnDodajZdjecieDodanie" Content="Wybierz" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" Width="75" Click="btnDodajZdjecie_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                            <Button x:Name="btnZapiszM" Content="Zapisz" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="75" Click="btnZapiszM_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                            <Button x:Name="btnAnulujEdycja2" Content="Anuluj" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden" Background="{x:Null}" BorderBrush="#FFF1A60D" Foreground="#FFF1A60D" Height="35"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:Name="grdRaport" HorizontalAlignment="Left" Height="630" Margin="0,45,0,0" VerticalAlignment="Top" Width="1300" d:IsHidden="True">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Margin="0,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <DatePicker x:Name="dtpOdKiedy" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="14"/>
+                                <DatePicker x:Name="dtpDoKiedy" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <Button x:Name="btnGenerujRaport" Content="Generuj" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Center" Width="75" Click="btnGenerujRaport_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35"/>
+                                <Button x:Name="btnZapiszDoPliku" Content="Zapisz" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="btnZapiszDoPliku_Click" Background="#FFF1A60D" BorderBrush="Black" Height="35" Visibility="Visible"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <TextBox x:Name="txtPodglad" HorizontalAlignment="Left" Height="498" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" IsReadOnly="True" AcceptsTab="True" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Auto" BorderBrush="#FFF1A60D" Background="#B2202020" Foreground="#FFE6E6E6" SelectionBrush="#FFF1A60D" />
+                </StackPanel>
+
+
+            </Grid>
+                   <Grid x:Name="grdStawkaGodzinowa" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" d:IsHidden="True">
+                <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="950" Grid.Column="1"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ListBox x:Name="lbxKierowcyStawkaGodzinowa" HorizontalAlignment="Left" Height="400" Margin="64,90,0,0" VerticalAlignment="Top" Width="270" Background="#B2202020" BorderBrush="#FFF1A60D" Foreground="WhiteSmoke" SelectionChanged="lbxKierowcyStawkaGodzinowa_SelectionChanged"/>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="40,0,0,0">
+                        <Grid x:Name="grdEdycjaStawkiGodzinowej" HorizontalAlignment="Center" Height="100" Margin="0,0,0,0" VerticalAlignment="Center" Width="420">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <Label Content="Miesiąc" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cbxMiesiac" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="31"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <Label Content="Rok" Foreground="#FFF1A60D" FontSize="16" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cbxRok" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="31"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid x:Name="grdZapisanieStawkiGodzinowej" HorizontalAlignment="Left" Height="100" Margin="0,0,0,0" VerticalAlignment="Top" Width="420">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Stawka godzinowa:" Foreground="#FFF1A60D" FontSize="16" VerticalAlignment="Center" />
+                                        <TextBox x:Name="txtStawka" HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82"  Foreground="WhiteSmoke" Background="#B2202020" BorderBrush="#FFF1A60D" SelectionBrush="#FFF1A60D" BorderThickness="0,0,0,1" />
+                                    </StackPanel>
+                                    <Label x:Name="lblZłaStawkaGodzinowa" Content="Zły format" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="Red"/>
+                            </StackPanel>
+                            <Button x:Name="btnZapiszStawkeGodzninowa" Content="Zapisz" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="75" Background="#FFF1A60D" BorderBrush="Black" Height="35" Click="btnZapiszStawkeGodzninowa_Click"/>
+                            </StackPanel>
+                        </Grid>
+                   </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

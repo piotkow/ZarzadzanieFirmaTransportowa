@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e592ae6c30643a580e75e9429b8c069" Name="Diagram1">
+        <EntityTypeShape EntityType="mydbModel.administrator" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.kierowcy" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.klienci" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.konta" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.pensja" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.pojazdy" Width="1.5" PointX="10.625" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.szczegoly_zamowienia" Width="1.5" PointX="9.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.zamowienia" Width="1.5" PointX="5.375" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="mydbModel.fk_zamowienia_administrator1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_kierowcy_konta1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_klienci_konta1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_zamowienia_klienci1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_zamowienia_szczegoly_zamowienia1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mydbModel.model_samochodu" Width="1.5" PointX="0.75" PointY="10.875" />
+        <AssociationConnector Association="mydbModel.fk_pojazdy_model11" />
+        <AssociationConnector Association="mydbModel.fk_zamowienia_model_samochodu1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

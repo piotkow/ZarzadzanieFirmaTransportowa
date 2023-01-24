@@ -1,0 +1,116 @@
+﻿<Page x:Class="Firma_Transportowa.PanelKierowcy"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Firma_Transportowa"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1300"
+      Title="Kierowca">
+    <Grid Margin="0,25,0,0">
+        <StackPanel x:Name="stpPanelKierowcy" Orientation="Horizontal" VerticalAlignment="Top" Height="46" HorizontalAlignment="Center">
+            <Button x:Name="btnZlecenia" Content="Zlecenia" Width="100" HorizontalAlignment="Left" Click="btnZlecenia_Click" Background="#FFF1A613" BorderBrush="{x:Null}" Foreground="Black" BorderThickness="1,1,1,0" />
+            <Button x:Name="btnHistoriaZlecen" Content="Historia Zleceń" Margin="0,0,0,0" Width="100" HorizontalAlignment="Left" Click="btnHistoriaZlecen_Click" Background="{x:Null}" Foreground="#FFF1A613" BorderBrush="#FFF1A613" BorderThickness="1,1,1,0"/>
+        </StackPanel>
+        <Grid x:Name="grdPanelZlecen" Margin="0,46,0,0" Visibility="Visible">
+            <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="280" Grid.Column="1"/>
+            <Label Content="Twoje Zlecenia" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" Background="#00000000" Foreground="#FFF1A613" Grid.Column="1" Height="37" Width="140"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Margin="100,0" Width="785" >
+                    <ListBox x:Name="lbxListaZlecen" HorizontalAlignment="Left" Height="159" Margin="30,100,0,0" VerticalAlignment="Top" Width="745" Background="#E51E1E1E" Foreground="WhiteSmoke" SelectionChanged="lbxListaZlecen_SelectionChanged" BorderBrush="#FFF1A613"/>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Grid HorizontalAlignment="Left" Height="200" Margin="30,30,0,0" VerticalAlignment="Top" Width="313">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel HorizontalAlignment="Left" Height="190" Width="150" Margin="12,0,0,0">
+                                        <Label x:Name="lblPensja" Content="Pensje" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF1A613" FontSize="16"/>
+                                        <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" Background="#B2202020">
+                                            <ListBox x:Name="lbxListaPensji" HorizontalAlignment="Left" Height="138" Margin="0,0,0,0" VerticalAlignment="Top" Width="145" SelectionChanged="lbxListaPensji_SelectionChanged" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Center" Margin="0,0,0,0" Width="149" VerticalAlignment="Center">
+                                        <Label x:Name="lblLiczbaGodzin" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="140" Foreground="White" FontSize="14"/>
+                                        <Label x:Name="lblStawka" Content="" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="140" Foreground="White" FontSize="14"/>
+                                        <Label x:Name="lblSuma" Content="" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="140" Foreground="White" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="grdSzczegolyZamowienia" HorizontalAlignment="Left" Height="200" Margin="40,30,0,0" VerticalAlignment="Top" Width="391">
+                            <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label x:Name="lblNapisAdresP" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Width="180" Margin="15,0,0,0" Foreground="#FFF1A60D"/>
+                                        <Label x:Name="lblNapisAdresK" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Width="180" Margin="5,0,0,0" Foreground="#FFF1A60D"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"  >
+                                        <Label x:Name="lblAdresPoczatkowy" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="90" Width="180" Background="{x:Null}" FontSize="16" BorderBrush="#FFABADB3" Foreground="White" Margin="15,0,0,0"/>
+                                        <Label x:Name="lblAdresKoncowy" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="90" Width="180" Margin="5,0,0,0" FontSize="16" Background="{x:Null}" BorderBrush="#FFABADB3" Foreground="White"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label x:Name="lblOdlegloscSuma" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Height="30" Width="269" Background="{x:Null}"  Grid.RowSpan="2" Foreground="White" FontSize="10"/>
+                                        <ComboBox x:Name="cmbStatusZamowienia" Width="108" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Background="{x:Null}" Foreground="Black">
+                                            <ComboBoxItem Content="Oczekuje" HorizontalAlignment="Left" Width="104"/>
+                                            <ComboBoxItem Content="Realizowany" HorizontalAlignment="Left" Width="104"/>
+                                            <ComboBoxItem Content="Zakonczony" HorizontalAlignment="Left" Width="104"/>
+                                            <ComboBoxItem Content="Zatwierdzony" HorizontalAlignment="Left" Width="106"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <Label Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label x:Name="lblKm" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Height="30" Width="119" Background="{x:Null}"  Grid.RowSpan="2" Foreground="#FFF1A613" FontSize="14" Content="Ilość Kilometrów:"/>
+                                        <TextBox x:Name="txtIloscKm" Width="256" Background="{x:Null}" BorderBrush="#FFF1A613" SelectionBrush="#FFF1A613" Foreground="WhiteSmoke" FontSize="16" BorderThickness="0,0,0,1"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                    <Button x:Name="btnZatwierdzZmiany" Content="Zapisz" HorizontalAlignment="Right" Margin="0,20,0,0" VerticalAlignment="Top" Width="92" Click="btnZatwierdzZmiany_Click" Height="44" Background="#FFF1A613" BorderBrush="Black"/>
+                </StackPanel>
+                <Grid HorizontalAlignment="Center" Margin="-20,100,0,0" Height="403" Width="200" VerticalAlignment="Top">
+                    <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                        <StackPanel>
+                            <Label Content="Wybierz pojazd:" HorizontalAlignment="Center" Margin="0,0,0,0" Foreground="#FFF1A613" d:IsHidden="False" FontSize="16"/>
+                            <ListBox x:Name="lbxPojazdy" HorizontalAlignment="Center" Height="334" Margin="0,0,0,0" Width="198" Background="#B2202020" Foreground="WhiteSmoke" SelectionChanged="lbxPojazdy_SelectionChanged" d:IsHidden="False" BorderBrush="{x:Null}"/>
+                            <Button x:Name="btnPrzypiszPojazd" Content="Wybierz" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="110" Click="btnPrzypiszPojazd_Click" d:IsHidden="False" Height="23" Background="{x:Null}" BorderBrush="#FFF1A613" Foreground="#FFF1A613"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+
+        </Grid>
+        <Grid x:Name="grdPanelHistorii" Margin="0,46,0,0" Visibility="Hidden">
+
+            <Rectangle Fill="#FFF1A613" HorizontalAlignment="Center" Height="1" Margin="0,0,0,0" VerticalAlignment="Top" Width="280" Grid.Column="1"/>
+            <Label Content="Historia Zleceń" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" Background="#00000000" Foreground="#FFF1A613" Grid.Column="1"/>
+            <ListBox x:Name="lbxListaZlecenH" HorizontalAlignment="Center" Height="160" Margin="0,90,0,0" VerticalAlignment="Top" Width="900" Background="#E51E1E1E" Foreground="WhiteSmoke" SelectionChanged="lbxListaZlecenH_SelectionChanged" BorderBrush="#FFF1A613"/>
+
+            <Grid x:Name="grdSzczegolyZamowieniaH" HorizontalAlignment="Center" Height="184" Margin="0,280,0,0" VerticalAlignment="Top" Width="418">
+                <Border BorderBrush="#FFF1A60D" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Background="#B2202020">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="lblNapisAdresPH" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="180" FontSize="16" Foreground="#FFF1A60D" Margin="15,0,0,0"/>
+                            <Label x:Name="lblNapisAdresKH" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="180" Margin="15,0,0,0" FontSize="16" Foreground="#FFF1A60D"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="lblAdresPoczatkowyH" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88" Width="180" FontSize="16" Foreground="White" Margin="15,0,0,0"/>
+                            <Label x:Name="lblAdresKoncowyH" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="86" Width="180" Margin="15,0,0,0" FontSize="16" Foreground="White"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="lblNapisSumaH" Margin="10,0,0,0" FontSize="16" Foreground="#FFF1A613" Content="Cena:" VerticalAlignment="Center" Height="38" Width="57" Visibility="Hidden"/>
+                            <Label x:Name="lblOdlegloscSumaH" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Height="38" Width="305" Foreground="White" FontSize="16"/>
+                        </StackPanel>
+                        <ComboBox x:Name="cmbStatusZamowieniaH" Width="106" Margin="5,0,0,0">
+                            <ComboBoxItem Content="Oczekuje" HorizontalAlignment="Left" Width="104"/>
+                            <ComboBoxItem Content="Realizowany" HorizontalAlignment="Left" Width="104"/>
+                            <ComboBoxItem Content="Zakonczony" HorizontalAlignment="Left" Width="104"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Page>
